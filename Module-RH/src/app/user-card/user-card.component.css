@@ -1,0 +1,89 @@
+particles
+{
+	background-color : white;
+	width : 100%;
+	height : 100%;
+	position:fixed;
+	z-index : 0;
+}
+
+ul li
+{
+	display: inline-block;
+}
+
+ul
+{
+	margin-top : 8vw;
+	list-style-type : none;
+}
+
+.card
+{
+	margin-left : 2vw;
+	position : relative;
+	z-index : 1;
+	margin-top : 1vw;
+	border-radius : 1vw;
+	background-color : white;
+	height: 9vw;
+	width: 19vw;
+	box-shadow : 1px 1px 1px;
+	
+}
+
+.up
+{
+	height : 4.5vw;
+}
+.photo
+{
+	width : 4vw;
+	height : 100%;
+	float : right;
+	margin-right : 1vw;
+}
+.photo img
+{
+	width : 4.2vw;
+	height : 4.4vw;
+}
+
+
+.middle
+{
+	border-bottom : 2px solid #a3a3a3;
+	background-color : 	#e6e6e6;
+	height : 3.5vw;
+}
+.pastille
+{
+	border : 1px solid black;
+	width : 3vw;
+	height : 70%;
+	float : left;
+	margin-left : 1vw;
+	margin-top :0.5vw;
+}
+.name
+{
+	width : auto;
+	height : 1vw;
+	margin-top : 1.2vw;
+	float : left;
+	margin-left : 0.7vw;
+	font-size : 1vw;
+	font-family : "Arial";
+	font-weight : bold;
+}
+
+
+
+
+.down
+{
+	border-top : 1px #a3a3a3;
+	height : 1vw;
+}
+
+

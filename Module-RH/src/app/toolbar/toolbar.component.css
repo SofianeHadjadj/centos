@@ -1,0 +1,27 @@
+#toolbar
+{
+	padding : 0;
+	margin : 0;
+	background-color : white;
+	color : #005bab;
+	width : 100%;
+	border-top : 1px solid white;
+	height : 6vw;
+	box-shadow : 2px 2px 2px #000000;
+}
+#title
+{
+	text-align : center;
+	margin-top : 1.9vw;
+	font-size : 2vw;
+	font-family : "Arial";
+}
+#logo
+{
+	float : left;
+}
+#logo img
+{
+	margin-top: 1vw;
+	width : 5vw;
+}
