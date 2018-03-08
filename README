@@ -1,3 +1,10 @@
 
+-**When you clone the project you have to npm install in the following folders**
+	- API_REST
+	- Front_end
 
-- **Execute the script run_all.sh in order to run the APP with the backend**
+	ps: You can also run the script install_modules.sh 
+
+--------------------------------------------------------------------------------
+
+-**Execute the script run_all.sh in order to run the APP with the backend**
