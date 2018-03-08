@@ -11,6 +11,9 @@ import { Card } from '../card';
 
 export class UserCardComponent implements OnInit {
 	
+	api_ip : String = "192.168.43.159";
+	api_port : String = "3000";
+
 	current_card : Card = new Card;
 	card_list : Array<Card> = new Array; 
 	
@@ -38,7 +41,7 @@ export class UserCardComponent implements OnInit {
 			
 		
 
-		this.http.get('http://192.168.0.23:4000/get_users/').subscribe(data => {
+		this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_users/').subscribe(data => {
 			
 		
 		
@@ -53,7 +56,7 @@ export class UserCardComponent implements OnInit {
 			  
 			  
 			  
-			  this.http.get('http://192.168.0.23:4000/get_user_presence/'+this.current_card.id).subscribe(data2 => {  
+			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_presence/'+this.current_card.id).subscribe(data2 => {  
 			  
 			 console.log(this.current_card.id);
 					
@@ -65,26 +68,21 @@ export class UserCardComponent implements OnInit {
 				  
 			  });
 			  
-			  this.http.get('http://192.168.0.23:4000/get_user_info/'+this.current_card.id).subscribe(data3 => {  
+			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_info/'+this.current_card.id).subscribe(data3 => {  
 			  
 			  
 		
 				 for(let key3 in data3)
 				 {
-					 this.current_card.photo_src = data3[key3].photo_src;
+					 this.current_card.photo_src = "../../assets/img/person" + data3[key3].photo_src;
 					
 				 }
 					
 			  });
-
-			  
-			  
-			  
-			  //console.log(this.current_card);
 			  this.card_list.push(this.current_card);
 			  
 		  }
-		 // console.log(this.card_list);
+
 		});
 		
 		

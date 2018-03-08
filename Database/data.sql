@@ -1,6 +1,15 @@
-create database OSS;
-
-use OSS;
+DROP TABLE IF EXISTS user_presence CASCADE;
+DROP TABLE IF EXISTS user_functions CASCADE;
+DROP TABLE IF EXISTS user_roles CASCADE;
+DROP TABLE IF EXISTS user_informations CASCADE;
+DROP TABLE IF EXISTS user_affichage CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS jobs CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
+DROP TABLE IF EXISTS functions CASCADE;
+DROP TABLE IF EXISTS services_child CASCADE;
+DROP TABLE IF EXISTS services CASCADE;
+DROP TABLE IF EXISTS day_list CASCADE;
 
 Create table users(
 
@@ -8,13 +17,11 @@ id int(1) AUTO_INCREMENT PRIMARY KEY,
 name varchar(50)
 );
 
-
 Create table user_affichage(
 
 user int(1),
 yes_or_no varchar(1),
-FOREIGN KEY (user)
-        REFERENCES users(id)
+FOREIGN KEY (user) REFERENCES users(id)
 );
 
 Create table jobs(
@@ -45,10 +52,8 @@ Create table services_child(
 
 parent_id int(1) ,
 child_id int(1) ,
-FOREIGN KEY (parent_id)
-        REFERENCES services(id),
-FOREIGN KEY (child_id)
-        REFERENCES services(id)
+FOREIGN KEY (parent_id) REFERENCES services(id),
+FOREIGN KEY (child_id) REFERENCES services(id)
 
 );
 
@@ -63,10 +68,8 @@ Create table user_presence(
 user int(1),
 day int(1),
 yes_or_no varchar(1),
-FOREIGN KEY (user)
-        REFERENCES users(id),
-FOREIGN KEY (day)
-        REFERENCES day_list(id)
+FOREIGN KEY (user) REFERENCES users(id),
+FOREIGN KEY (day) REFERENCES day_list(id)
 );
 
 Create table user_roles(
@@ -74,12 +77,9 @@ Create table user_roles(
 user int(1),
 day int(1),
 role int(1),
-FOREIGN KEY (user)
-        REFERENCES users(id),
-FOREIGN KEY (day)
-        REFERENCES day_list(id),
-FOREIGN KEY (role)
-        REFERENCES roles(id)
+FOREIGN KEY (user) REFERENCES users(id),
+FOREIGN KEY (day) REFERENCES day_list(id),
+FOREIGN KEY (role) REFERENCES roles(id)
 );
 
 Create table user_functions(
@@ -87,12 +87,9 @@ Create table user_functions(
 user int(1),
 day int(1),
 function int(1),
-FOREIGN KEY (user)
-        REFERENCES users(id),
-FOREIGN KEY (day)
-        REFERENCES day_list(id),
-FOREIGN KEY (function)
-        REFERENCES functions(id)
+FOREIGN KEY (user) REFERENCES users(id),
+FOREIGN KEY (day) REFERENCES day_list(id),
+FOREIGN KEY (function) REFERENCES functions(id)
 );
 
 Create table user_informations(
@@ -104,12 +101,9 @@ mail varchar(30),
 job int(1),
 service int(1),
 photo_src varchar(20),
-FOREIGN KEY (user)
-        REFERENCES users(id),
-FOREIGN KEY (job)
-        REFERENCES jobs(id),
-FOREIGN KEY (service)
-        REFERENCES services(id)
+FOREIGN KEY (user) REFERENCES users(id),
+FOREIGN KEY (job) REFERENCES jobs(id),
+FOREIGN KEY (service) REFERENCES services(id)
 );
 
 insert into day_list(name) values ("Lundi");
@@ -134,8 +128,6 @@ insert into jobs(name) values("Developpeur");
 
 insert into services (name) values ("Marchandise");
 
-
-//------------
 
 insert into users(name) values ("Binji SUN");
 
@@ -166,12 +158,6 @@ insert into user_presence(user,day,yes_or_no) values(1,4,"y");
 insert into user_presence(user,day,yes_or_no) values(1,5,"y");
 insert into user_presence(user,day,yes_or_no) values(1,6,"n");
 insert into user_presence(user,day,yes_or_no) values(1,7,"n");
-
-
-
-//------------------
-
-
 
 insert into users(name) values ("Alain KHUON");
 
