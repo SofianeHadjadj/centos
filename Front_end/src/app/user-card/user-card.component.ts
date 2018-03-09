@@ -58,7 +58,6 @@ export class UserCardComponent implements OnInit {
 			  
 			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_presence/'+this.current_card.id).subscribe(data2 => {  
 			  
-			 console.log(this.current_card.id);
 					
 				 for(let key2 in data2)
 				 {
@@ -74,7 +73,7 @@ export class UserCardComponent implements OnInit {
 		
 				 for(let key3 in data3)
 				 {
-					 this.current_card.photo_src = "../../assets/img/person" + data3[key3].photo_src;
+					 this.current_card.photo_src = data3[key3].photo_src;
 					
 				 }
 					
@@ -84,6 +83,7 @@ export class UserCardComponent implements OnInit {
 		  }
 
 		});
+		console.log(this.card_list);
 		
 		
 	

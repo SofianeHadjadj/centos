@@ -1,12 +1,12 @@
 <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
 <ul>
-	<li *ngFor="let test of card_list">
+	<li *ngFor="let card of card_list">
 	<div class="card">
 	
 	
 		<div class = "up">
 			<div class = "photo">
-				<img src = "../../assets/img/person/{{test.photo_src}}"/>
+				<img src = "../../assets/img/person/{{card.photo_src}}"/>
 			</div>
 		</div>
 		
@@ -18,7 +18,7 @@
 			</div>
 	
 			<div class = "name">
-				{{test.name}}
+				{{card.name}}
 			</div>
 			
 		</div>
