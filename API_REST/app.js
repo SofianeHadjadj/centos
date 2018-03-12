@@ -1,11 +1,28 @@
+//Import des modules
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 var mysql = require('mysql');
 
-var my_ip = "192.168.43.159";
+//Valeurs par défaut
+var my_ip = "127.0.0.1";
 var my_port = 3000;
 
+//Parseur d'arguments
+process.argv.forEach((val,index)=>{
+
+  if(index==2)
+  {
+    my_ip = val;
+  }
+  else if(index == 3)
+  {
+    my_port = val;
+  }
+
+});
+
+//Connexion à la base de données
 var con = mysql.createConnection({
   host: "localhost",
   user: "OSP",
@@ -17,8 +34,10 @@ con.connect(function(err) {
 	  if (err) throw err;
 	  console.log("Connected!");
 });	
-	
+//----------------------------------	
 
+
+//Fonction pour les headers HTTP
 var sethead = function(res)
 {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,6 +46,7 @@ var sethead = function(res)
 	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
 	res.setHeader('Content-Type', 'application/json');	
 }
+//-------------------------------
 
 	
 app.get('/get_user/:id',function(req,res){

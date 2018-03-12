@@ -8,3 +8,4 @@
 --------------------------------------------------------------------------------
 
 -**Execute the script run_all.sh in order to run the APP with the backend**
+	syntax : ./run_all.sh [your_ip] [API_port] [Front_port]	

@@ -58,11 +58,13 @@ export class UserCardComponent implements OnInit {
 			  
 			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_presence/'+this.current_card.id).subscribe(data2 => {  
 			  
-					
+			this.current_card.presence = new Array;		
 				 for(let key2 in data2)
 				 {
 					 this.current_card.presence[data2[key2].day - 1] = data2[key2].presence;
+console.log(this.current_card.presence);
 				 }
+
 		
 				  
 			  });
@@ -79,14 +81,15 @@ export class UserCardComponent implements OnInit {
 					
 			  });
 			  this.card_list.push(this.current_card);
-			  
-		  }
 
-		});
+		  }
 		console.log(this.card_list);
+		});
+
 		
 		
 	
 	}
+
 
 }
