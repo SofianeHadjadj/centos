@@ -23,6 +23,6 @@
 	- Modify the ip/port with YOUR_IP and YOUR_API_PORT in the file
 		- Front_end/src/app/user-card/user-card.component.ts
 		
-	- In the Front_end folder run the command : ng serve --host [YOUR_IP] [YOUR_FRONT_PORT]
+	- In the Front_end folder run the command : ng serve --host [YOUR_IP] --port [YOUR_FRONT_PORT]
 
 	 
