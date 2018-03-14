@@ -14,6 +14,12 @@
 	- Create a database
 
 	- Import the SQL file Database/data.sql in your database
+	
+	- Modify the database connection variables in the file API_REST/app.js
+		- host
+		- user
+		- password
+		- database
 
 	- Get your ip with the command : ifconfig (linux) or ipconfig (windows)
 
