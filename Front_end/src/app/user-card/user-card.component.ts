@@ -11,85 +11,110 @@ import { Card } from '../card';
 
 export class UserCardComponent implements OnInit {
 	
-	api_ip : String = "192.168.33.10";
-	api_port : String = "3000";
-
-	current_card : Card = new Card;
-	card_list : Array<Card> = new Array; 
-	
+	// Variables pour particles-js
 	myStyle: object = {};
     myParams: object = {};
     width: number = 100;
     height: number = 100;
+	// Variables pour la connexion à l'API
+	api_ip : String = "192.168.33.10";
+	api_port : String = "3000";
+	// Variables pour gérer les user-cards
+	card_list : Array<Card> = new Array; 
+	current_card: Card = new Card;
+	//--------------------------------------
+	
 	
 	constructor(private http : HttpClient) { 
 	}
 
 	ngOnInit() {
 		
-		this.myStyle = {
-            'width': '100%',
-            'height': '100%',
-            'z-index': 1,
-            'top': 0,
-            'left': 0,
-            'right': 0,
-            'bottom': 0,
-        };
+		// Particle-js Style
+		this.myStyle = {'width': '100%','height': '100%','z-index': 1,'top': 0,'left': 0,'right': 0,'bottom': 0,};
 		this.myParams = {"particles":{"number":{"value":100,"density":{"enable":true,"value_area":1000}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":2,"color":"#ffffff"},"polygon":{"nb_sides":5},},"opacity":{"value":1,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":1,"sync":false}},"size":{"value":2,"random":true,"anim":{"enable":false,"speed":0,"size_min":85.51448551448551,"sync":false}},"line_linked":{"enable":true,"distance":230,"color":"#000000","opacity":1,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":0,"rotateY":0}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":800,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true};
-   
+		//----------------------
+		
+		//Récupération des user-cards depuis l'API
+		this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_cards/').subscribe(data => {
 			
-		
+			//insertion des user informations dans la card_list
+			for(let key in data)
+			{
+				this.current_card = new Card;
+				this.current_card.functions = new Array;
 
-		this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_users/').subscribe(data => {
+				if(this.find_user_in_list(data[key].id) == 0)
+				{
+					this.current_card.id = data[key].id;
+					this.current_card.name = data[key].name;
+					this.current_card.mail = data[key].mail;
+					this.current_card.birthday = data[key].birthday;
+					this.current_card.job = data[key].job;
+					this.current_card.phone = data[key].phone;
+					this.current_card.photo_src = data[key].photo_src;
+					this.current_card.role = data[key].role;
+					this.current_card.service = data[key].service;
+
+					this.card_list.push(this.current_card);
+				}
+			}
+			//insertion des user fonctions dans la card_list
+			for(let key in data)
+			{
+				if(this.find_user_function(data[key].id, data[key].function) == 0)
+				{
+					this.push_user_function(data[key].id, data[key].function);
+				}
+			}
 			
-		
-		
-				
-		  for(let key in data)
-		  {
-				
-			  this.current_card = new Card;
-			  this.current_card.presence = new Array;
-			  this.current_card.id = data[key].id;
-			  this.current_card.name = data[key].name;
-			  
-			  
-			  
-			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_presence/'+this.current_card.id).subscribe(data2 => {  
-			  
-			this.current_card.presence = new Array;		
-				 for(let key2 in data2)
-				 {
-					this.current_card.presence[data2[key2].day - 1] = data2[key2].presence;
-					console.log(this.current_card.presence);
-				 }
-
-		
-				  
-			  });
-			  
-			  this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_info/'+this.current_card.id).subscribe(data3 => {  
-			  
-			  
-		
-				 for(let key3 in data3)
-				 {
-					 this.current_card.photo_src = data3[key3].photo_src;
-					
-				 }
-					
-			  });
-			  this.card_list.push(this.current_card);
-
-		  }
-		console.log(this.card_list);
+			console.log(this.card_list);
 		});
+		//-----------------------------------------
 
-		
-		
-	
 	}
-
-
+	// Rechercher si l'utilisateur est déjà insérer dans la liste des user-cards
+	find_user_in_list(id) {
+		
+		for (let key in this.card_list)
+		{
+			if(this.card_list[key].id == id)
+			{
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
+	// Rechercher pour le user si on à déjà insérer la fonction func
+	find_user_function(id, func) {
+		
+		for (let key in this.card_list)
+		{
+			if(this.card_list[key].id == id)
+			{
+				for(let key2 in this.card_list[key].functions)
+				{
+					if(this.card_list[key].functions[key2] == func)
+					{
+						return 1;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+	
+	// insérer une fonction pour un user
+	push_user_function(id, func)
+	{
+		for (let key in this.card_list)
+		{
+			if(this.card_list[key].id == id)
+			{
+				this.card_list[key].functions.push(func);
+			}
+		}
+	}
+	
 }

@@ -56,6 +56,7 @@ app.get('/get_user_cards',function(req,res){
 				usr.name,\
 				jobs.name as job,\
 				services.name as service,\
+				ui.photo_src,\
 				ui.birthday,\
 				ui.phone,\
 				ui.mail,\
