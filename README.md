@@ -1,16 +1,28 @@
 
--**When you clone the project you have to run the command npm install in the following folders**
+**1) When you clone the project you have to run the command npm install in the following folders**
+
 
 	- API_REST
+	
 	- Front_end
 
 --------------------------------------------------------------------------------
 
--**In order to run the project you have to follow this steps**
+**2) In order to run the project you have to follow this steps**
 
-	- Get your ip with ifconfig (linux) or ipconfig (windows)
+	- Install MariaDB Server and run it !
+	
+	- Create a database
 
-	- Modify the ip/port of the API in the file
-		* Front_end/src/app/user-card/user-card.component.ts
+	- Import the SQL file Database/data.sql in your database
 
-	- In the API_REST folder run node app.js [YOUR_IP] [API_PORT] 
+	- Get your ip with the command : ifconfig (linux) or ipconfig (windows)
+
+	- In the API_REST folder run the command : node app.js [YOUR_IP] [YOUR_API_PORT]
+	
+	- Modify the ip/port with YOUR_IP and YOUR_API_PORT in the file
+		- Front_end/src/app/user-card/user-card.component.ts
+		
+	- In the Front_end folder run the command : ng serve --host [YOUR_IP] [YOUR_FRONT_PORT]
+
+	 
