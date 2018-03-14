@@ -6,7 +6,6 @@
 	
 	- Front_end
 
---------------------------------------------------------------------------------
 
 **2) In order to run the project you have to follow this steps**
 
