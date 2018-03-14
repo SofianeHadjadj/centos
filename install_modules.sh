@@ -1,5 +1,6 @@
-cd ./Front_end
+cd Front_end
 npm install
-cd ../API_REST
+cd ..
+cd API_REST
 npm install
 cd ..

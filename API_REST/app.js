@@ -8,7 +8,7 @@ var mysql = require('mysql');
 var my_ip = "127.0.0.1";
 var my_port = 3000;
 
-//Parseur d'arguments
+//Parseur d'arguments  -------->  syntaxe: node app.js [ip] [port]
 process.argv.forEach((val,index)=>{
 
   if(index==2)
@@ -21,12 +21,13 @@ process.argv.forEach((val,index)=>{
   }
 
 });
+//------------------------------------------------------------------
 
 //Connexion à la base de données
 var con = mysql.createConnection({
   host: "localhost",
-  user: "OSP",
-  password: "OSP",
+  user: "root",
+  password: "yoyo110A!",
   database : "OSP"
 });
 
@@ -41,127 +42,44 @@ con.connect(function(err) {
 var sethead = function(res)
 {
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-	res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
+	res.setHeader('Access-Control-Allow-Credentials', true); 
 	res.setHeader('Content-Type', 'application/json');	
 }
 //-------------------------------
 
 	
-app.get('/get_user/:id',function(req,res){
-	con.query("select * from users where id = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
+app.get('/get_user_cards',function(req,res){
+	
+	con.query("select DISTINCT usr.id, \
+				usr.name,\
+				jobs.name as job,\
+				services.name as service,\
+				ui.birthday,\
+				ui.phone,\
+				ui.mail,\
+				functions.name as function,\
+				roles.name as role,\
+				dl.name as day,\
+				up.yes_or_no as presence\
+					FROM users usr\
+						INNER JOIN user_presence up ON usr.id = up.user\
+						INNER JOIN day_list dl ON up.day = dl.id\
+						INNER JOIN user_functions ufs ON usr.id = ufs.user\
+						INNER JOIN functions on ufs.function = functions.id\
+						INNER JOIN user_roles ur ON usr.id = ur.user\
+						INNER JOIN roles ON ur.role = roles.id\
+						INNER JOIN user_informations ui ON usr.id = ui.user INNER JOIN jobs ON ui.job = jobs.id\
+						INNER JOIN services ON ui.service = services.id\
+						INNER JOIN user_affichage ua ON usr.id = ua.user\
+							WHERE ua.yes_or_no = 'y'\
+								ORDER BY usr.id, up.day", function (err, result) {
+			if (err) throw err;
+			sethead(res);
+			res.send(JSON.stringify(result));
 	});		
 });
-
-app.get('/get_users',function(req,res){
-	con.query("select us.id, us.name from users us, user_affichage ua where us.id = ua.user and ua.yes_or_no = 'y'", function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_user_info/:id',function(req,res){
-	con.query("select * from user_informations where user = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_user_affichage/:id',function(req,res){
-	con.query("select * from user_affichage where user = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_user_presence/:id/',function(req,res){
-	con.query("select up.day, up.yes_or_no as presence from user_presence up where user = " + req.params.id  , function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_user_roles/:id/:day',function(req,res){
-	con.query("select * from user_roles where user = " + req.params.id + " and day = " + req.params.day ,  function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_user_functions/:id/:day',function(req,res){
-	con.query("select * from user_functions where user = " + req.params.id + " and day = " + req.params.day , function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_services',function(req,res){
-	con.query("select * from services", function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_services_child/:id',function(req,res){
-	con.query("select * from services_child where parent_id = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_function/:id',function(req,res){
-	con.query("select * from functions where id = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_job/:id',function(req,res){
-	con.query("select * from jobs where id = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-app.get('/get_role/:id',function(req,res){
-	con.query("select * from roles where id = " + req.params.id, function (err, result) {
-		if (err) throw err;
-		sethead(res);
-		res.send(JSON.stringify(result));
-	});		
-});
-
-
-
-
-
-
-
 
 // -------------------------------------------------
-
 serv.listen(my_port,my_ip); // Lancement du serveur
-
-
-
-
-
-
-
-
-
-

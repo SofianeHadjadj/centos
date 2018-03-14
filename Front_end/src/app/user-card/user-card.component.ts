@@ -11,7 +11,7 @@ import { Card } from '../card';
 
 export class UserCardComponent implements OnInit {
 	
-	api_ip : String = "192.168.43.159";
+	api_ip : String = "192.168.33.10";
 	api_port : String = "3000";
 
 	current_card : Card = new Card;
@@ -61,8 +61,8 @@ export class UserCardComponent implements OnInit {
 			this.current_card.presence = new Array;		
 				 for(let key2 in data2)
 				 {
-					 this.current_card.presence[data2[key2].day - 1] = data2[key2].presence;
-console.log(this.current_card.presence);
+					this.current_card.presence[data2[key2].day - 1] = data2[key2].presence;
+					console.log(this.current_card.presence);
 				 }
 
 		
