@@ -16,14 +16,16 @@ export class UserCardComponent implements OnInit {
     myParams: object = {};
     width: number = 100;
     height: number = 100;
+	
 	// Variables pour la connexion à l'API
 	api_ip : String = "192.168.33.10";
 	api_port : String = "3000";
+	
 	// Variables pour gérer les user-cards
 	card_list : Array<Card> = new Array; 
 	current_card: Card = new Card;
-	//--------------------------------------
 	
+	//--------------------------------------
 	
 	constructor(private http : HttpClient) { 
 	}
@@ -38,13 +40,12 @@ export class UserCardComponent implements OnInit {
 		//Récupération des user-cards depuis l'API
 		this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_cards/').subscribe(data => {
 			
-			//insertion des user informations dans la card_list
-			for(let key in data)
+			// Insertion des users informations dans la card_list
+			for (let key in data)
 			{
 				this.current_card = new Card;
 				this.current_card.functions = new Array;
-
-				if(this.find_user_in_list(data[key].id) == 0)
+				if (this.find_user_in_list(data[key].id) == 0)
 				{
 					this.current_card.id = data[key].id;
 					this.current_card.name = data[key].name;
@@ -59,12 +60,22 @@ export class UserCardComponent implements OnInit {
 					this.card_list.push(this.current_card);
 				}
 			}
-			//insertion des user fonctions dans la card_list
-			for(let key in data)
+			
+			// Insertion des users fonctions dans la card_list
+			for (let key in data)
 			{
-				if(this.find_user_function(data[key].id, data[key].function) == 0)
+				if (this.find_user_function(data[key].id, data[key].function) == 0)
 				{
 					this.push_user_function(data[key].id, data[key].function);
+				}
+			}
+			
+			// Insertion des users presences dans la card_list
+			for (let key in data)
+			{
+				if (this.find_user_presence(data[key].id, data[key].day) == 0)
+				{
+					this.push_user_presence(data[key].id, data[key].day, data[key].presence);
 				}
 			}
 			
@@ -73,12 +84,13 @@ export class UserCardComponent implements OnInit {
 		//-----------------------------------------
 
 	}
+	
 	// Rechercher si l'utilisateur est déjà insérer dans la liste des user-cards
 	find_user_in_list(id) {
 		
 		for (let key in this.card_list)
 		{
-			if(this.card_list[key].id == id)
+			if (this.card_list[key].id == id)
 			{
 				return 1;
 			}
@@ -91,11 +103,11 @@ export class UserCardComponent implements OnInit {
 		
 		for (let key in this.card_list)
 		{
-			if(this.card_list[key].id == id)
+			if (this.card_list[key].id == id)
 			{
-				for(let key2 in this.card_list[key].functions)
+				for (let key2 in this.card_list[key].functions)
 				{
-					if(this.card_list[key].functions[key2] == func)
+					if (this.card_list[key].functions[key2] == func)
 					{
 						return 1;
 					}
@@ -105,14 +117,42 @@ export class UserCardComponent implements OnInit {
 		return 0;
 	}
 	
-	// insérer une fonction pour un user
-	push_user_function(id, func)
-	{
+	// Insérer une fonction pour un user
+	push_user_function(id, func) {
+		
 		for (let key in this.card_list)
 		{
-			if(this.card_list[key].id == id)
+			if (this.card_list[key].id == id)
 			{
 				this.card_list[key].functions.push(func);
+			}
+		}
+	}
+	
+	// Rechercher pour le user si on à déjà insérer la présence pour le day
+	find_user_presence(id, day) {
+		
+		for (let key in this.card_list)
+		{
+			if (this.card_list[key].id == id)
+			{
+				if (this.card_list[key].presence[day] == 'y' || this.card_list[key].presence[day] == 'n')
+				{
+					return 1;
+				}
+			}
+		}
+		return 0;
+	}
+	
+	// Insertion d'une user presence dans la card_list
+	push_user_presence(id, day, presence) {
+		
+		for (let key in this.card_list)
+		{
+			if (this.card_list[key].id == id)
+			{
+				this.card_list[key].presence[day] = presence;
 			}
 		}
 	}

@@ -9,7 +9,7 @@ export class Card {
   photo_src: string;
   role: string;
   service: string;
-  presence : {[key:string]:string};
+  presence: {[key:string]:string} = {};
   functions: Array<string>;
   
 }

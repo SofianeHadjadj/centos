@@ -6,18 +6,15 @@ particles
 	position:fixed;
 	z-index : 0;
 }
-
 ul li
 {
 	display: inline-block;
 }
-
 ul
 {
 	margin-top : 8vw;
 	list-style-type : none;
 }
-
 .card
 {
 	margin-left : 2vw;
@@ -31,7 +28,6 @@ ul
 	box-shadow : 1px 1px 1px;
 	
 }
-
 .up
 {
 	height : 4.5vw;
@@ -48,8 +44,6 @@ ul
 	width : 4.2vw;
 	height : 4.4vw;
 }
-
-
 .middle
 {
 	border-bottom : 2px solid #a3a3a3;
@@ -60,10 +54,16 @@ ul
 {
 	border : 1px solid black;
 	width : 3vw;
-	height : 70%;
+	height : 2.6vw;
 	float : left;
 	margin-left : 1vw;
 	margin-top :0.5vw;
+}
+.pastille img
+{
+	width : 3vw;
+	height : 2.6vw;
+	position: fixed;
 }
 .name
 {
@@ -76,10 +76,6 @@ ul
 	font-family : "Arial";
 	font-weight : bold;
 }
-
-
-
-
 .down
 {
 	border-top : 1px #a3a3a3;
