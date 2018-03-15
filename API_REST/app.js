@@ -78,6 +78,40 @@ app.get('/get_user_cards',function(req,res){
 								ORDER BY usr.id, up.day", function (err, result) {
 			if (err) throw err;
 			sethead(res);
+			
+			res.send(JSON.stringify(result));
+	});		
+});
+
+app.get('/get_user_cards/:id',function(req,res){
+	
+	con.query("select DISTINCT usr.id, \
+				usr.name,\
+				jobs.name as job,\
+				services.name as service,\
+				ui.photo_src,\
+				ui.birthday,\
+				ui.phone,\
+				ui.mail,\
+				functions.name as function,\
+				roles.name as role,\
+				dl.name as day,\
+				up.yes_or_no as presence\
+					FROM users usr\
+						INNER JOIN user_presence up ON usr.id = up.user\
+						INNER JOIN day_list dl ON up.day = dl.id\
+						INNER JOIN user_functions ufs ON usr.id = ufs.user\
+						INNER JOIN functions on ufs.function = functions.id\
+						INNER JOIN user_roles ur ON usr.id = ur.user\
+						INNER JOIN roles ON ur.role = roles.id\
+						INNER JOIN user_informations ui ON usr.id = ui.user INNER JOIN jobs ON ui.job = jobs.id\
+						INNER JOIN services ON ui.service = services.id\
+						INNER JOIN user_affichage ua ON usr.id = ua.user\
+							WHERE ua.yes_or_no = 'y'\
+							AND usr.id = " + req.params.id + " \
+								ORDER BY usr.id, up.day", function (err, result) {
+			if (err) throw err;
+			sethead(res);
 			res.send(JSON.stringify(result));
 	});		
 });
