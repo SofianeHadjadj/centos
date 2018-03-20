@@ -60,6 +60,6 @@
 
 
 	
-**Vous pouvez maintenant accedez à l'appliocation depuis le navigateur: https://[YOUR_IP]:[YOUR_ANGULAR_PORT]**
+**Vous pouvez maintenant accedez à l'application depuis le navigateur: https://[YOUR_IP]:[YOUR_ANGULAR_PORT]**
 
 	 
