@@ -1,4 +1,4 @@
-** Dans ce README je considère que le système d'exploitation est Centos 7 **
+**Dans ce README je considère que le système d'exploitation est Centos 7**
 
 
 
@@ -7,7 +7,7 @@
 	- API_REST	
 	- Front_end
 
-**2) !!!  Attention !!! **
+**2) !!!  Attention !!!**
 
 	- Tous le projet est basculé en HTTPS donc les liens ne sont pas
 	- accessible depuis http:// , il le sont depuis https://
@@ -60,6 +60,6 @@
 
 
 	
-**3) Vous pouvez maintenant accedez à l'appliocation depuis le navigateur: https;//[YOUR_IP]:[YOUR_ANGULAR_PORT]**
+**Vous pouvez maintenant accedez à l'appliocation depuis le navigateur: https://[YOUR_IP]:[YOUR_ANGULAR_PORT]**
 
 	 
