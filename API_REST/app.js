@@ -1,12 +1,25 @@
 //Import des modules
 var express = require('express');
 var app = express();
-var serv = require('http').Server(app);
+var fs = require("fs");
+
+var key = fs.readFileSync('ssl/key.pem');
+var cert = fs.readFileSync( 'ssl/cert.pem' );
+var ca = fs.readFileSync( 'ssl/csr.pem' );
+
+var options = {
+  key: key,
+  cert: cert,
+  ca: ca
+};
+
+var https = require('https');
+var serv = https.createServer(options, app);
 var mysql = require('mysql');
 
 //Valeurs par défaut
 var my_ip = "127.0.0.1";
-var my_port = 3000;
+var my_port = 443;
 
 //Parseur d'arguments  -------->  syntaxe: node app.js [ip] [port]
 process.argv.forEach((val,index)=>{
@@ -14,10 +27,6 @@ process.argv.forEach((val,index)=>{
   if(index==2)
   {
     my_ip = val;
-  }
-  else if(index == 3)
-  {
-    my_port = val;
   }
 });
 //------------------------------------------------------------------
@@ -114,4 +123,4 @@ app.get('/get_user_cards/:id',function(req,res){
 });
 
 // -------------------------------------------------
-serv.listen(my_port,my_ip); // Lancement du serveur
+serv.listen(443,my_ip); // Lancement du serveur

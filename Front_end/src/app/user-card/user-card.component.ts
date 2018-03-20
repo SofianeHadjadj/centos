@@ -19,7 +19,7 @@ export class UserCardComponent implements OnInit {
 	
 	// Variables pour la connexion à l'API
 	api_ip : String = "192.168.33.20"
-	api_port : String = "3000";
+	api_port : String = "443";
 	
 	// Variables pour gérer les user-cards
 	card_list : Array<Card> = new Array; 
@@ -37,7 +37,7 @@ export class UserCardComponent implements OnInit {
 		//----------------------
 		
 		//Récupération des user-cards depuis l'API
-		this.http.get('http://'+this.api_ip+':'+this.api_port+'/get_user_cards/').subscribe(data => {
+		this.http.get('https://'+this.api_ip+':'+this.api_port+'/get_user_cards/').subscribe(data => {
 			
 			// Insertion des users informations dans la card_list
 			for (let key in data)

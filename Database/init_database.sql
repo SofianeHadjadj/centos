@@ -190,3 +190,36 @@ insert into user_presence(user,day,yes_or_no) values(2,6,"n");
 insert into user_presence(user,day,yes_or_no) values(2,7,"n");
 
 
+insert into users(name) values ("Sofiane HADJADJ");
+
+insert into user_affichage(user,yes_or_no) values (3,"y");
+
+insert into user_informations(user, birthday, phone , mail, job, service, photo_src) values (3,"1996-05-09", "07.60.12.46.71","sofiane.hadjadj@gmail.com",2,1,"binji.png");
+
+insert into user_roles(user,day,role) values(3,1,3);
+insert into user_roles(user,day,role) values(3,2,3);
+insert into user_roles(user,day,role) values(3,3,3);
+insert into user_roles(user,day,role) values(3,4,3);
+insert into user_roles(user,day,role) values(3,5,3);
+insert into user_roles(user,day,role) values(3,6,3);
+insert into user_roles(user,day,role) values(3,7,3);
+
+insert into user_functions(user,day,function) values(3,1,1);
+insert into user_functions(user,day,function) values(3,2,3);
+insert into user_functions(user,day,function) values(3,3,3);
+insert into user_functions(user,day,function) values(3,4,3);
+insert into user_functions(user,day,function) values(3,5,3);
+insert into user_functions(user,day,function) values(3,6,3);
+insert into user_functions(user,day,function) values(3,7,3);
+
+insert into user_presence(user,day,yes_or_no) values(3,1,"y");
+insert into user_presence(user,day,yes_or_no) values(3,2,"y");
+insert into user_presence(user,day,yes_or_no) values(3,3,"y");
+insert into user_presence(user,day,yes_or_no) values(3,4,"y");
+insert into user_presence(user,day,yes_or_no) values(3,5,"y");
+insert into user_presence(user,day,yes_or_no) values(3,6,"n");
+insert into user_presence(user,day,yes_or_no) values(3,7,"n");
+
+
+
+
