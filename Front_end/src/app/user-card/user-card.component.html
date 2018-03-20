@@ -15,7 +15,8 @@
 		<div class = "middle">
 		
 			<div class = "pastille">
-				<img src = "../../assets/img/person/{{card.photo_src}}"/>
+				<img *ngIf = "card.presence[get_current_day()] == 'y'" src = "../../assets/img/conn.png"/>
+				<img *ngIf = "card.presence[get_current_day()] == 'n'" src = "../../assets/img/no_con.png"/>
 			</div>
 	
 			<div class = "name">

@@ -19,7 +19,6 @@ process.argv.forEach((val,index)=>{
   {
     my_port = val;
   }
-
 });
 //------------------------------------------------------------------
 
@@ -48,7 +47,6 @@ var sethead = function(res)
 	res.setHeader('Content-Type', 'application/json');	
 }
 //-------------------------------
-
 	
 app.get('/get_user_cards',function(req,res){
 	
@@ -77,8 +75,7 @@ app.get('/get_user_cards',function(req,res){
 							WHERE ua.yes_or_no = 'y'\
 								ORDER BY usr.id, up.day", function (err, result) {
 			if (err) throw err;
-			sethead(res);
-			
+			sethead(res);		
 			res.send(JSON.stringify(result));
 	});		
 });

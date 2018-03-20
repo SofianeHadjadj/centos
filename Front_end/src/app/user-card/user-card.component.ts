@@ -18,7 +18,7 @@ export class UserCardComponent implements OnInit {
     height: number = 100;
 	
 	// Variables pour la connexion à l'API
-	api_ip : String = "192.168.33.10";
+	api_ip : String = "192.168.33.20"
 	api_port : String = "3000";
 	
 	// Variables pour gérer les user-cards
@@ -31,9 +31,8 @@ export class UserCardComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		
-		// Particle-js Style
-		this.myStyle = {'width': '100%','height': '100%','z-index': 1,'top': 0,'left': 0,'right': 0,'bottom': 0,};
+		console.log(this.get_current_day());
+		this.myStyle = {'width': '100%','height': '100%','z-index': 1,'top': 0,'left': 0,'right': 0,'bottom': 0};
 		this.myParams = {"particles":{"number":{"value":100,"density":{"enable":true,"value_area":1000}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":2,"color":"#ffffff"},"polygon":{"nb_sides":5},},"opacity":{"value":1,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":1,"sync":false}},"size":{"value":2,"random":true,"anim":{"enable":false,"speed":0,"size_min":85.51448551448551,"sync":false}},"line_linked":{"enable":true,"distance":230,"color":"#000000","opacity":1,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":0,"rotateY":0}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":800,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true};
 		//----------------------
 		
@@ -155,6 +154,47 @@ export class UserCardComponent implements OnInit {
 				this.card_list[key].presence[day] = presence;
 			}
 		}
+	}
+	
+	get_current_day() {
+		var date = new Date();
+		var day ="";
+		switch(date.getDay())
+		{
+			case 1:{
+				day = "Lundi";
+				break;
+			}
+			case 2:{
+				day = "Mardi";
+				break;
+			}
+			case 3:{
+				day = "Mercredi";
+				break;
+			}
+			case 4:{
+				day = "Jeudi";
+				break;
+			}
+			case 5:{
+				day = "Vendredi";
+				break;
+			}
+			case 6:{
+				day = "Samedi";
+				break;
+			}
+			case 7:{
+				day = "Dimanche";
+				break;
+			}
+			default:{
+				day = "error";
+				break
+			}	
+		}
+		return day;
 	}
 	
 }

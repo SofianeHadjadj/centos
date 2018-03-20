@@ -163,7 +163,7 @@ insert into users(name) values ("Alain KHUON");
 
 insert into user_affichage(user,yes_or_no) values (2,"y");
 
-insert into user_informations(user, birthday, phone , mail, job, service, photo_src) values (2,"1996-05-09", "07.60.12.46.71","alain.khuon@gmail.com",2,1,"alain.png");
+insert into user_informations(user, birthday, phone , mail, job, service, photo_src) values (2,"1996-05-09", "07.60.12.46.71","alain.khuon@gmail.com",2,1,"binji.png");
 
 insert into user_roles(user,day,role) values(2,1,3);
 insert into user_roles(user,day,role) values(2,2,3);
