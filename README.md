@@ -4,21 +4,21 @@
 
 **1) Ne pas oublier les npm install dans les dossier suivants**
 
-	- API_REST	
-	- Front_end
+	* API_REST	
+	* Front_end
 
 **2) !!!  Attention !!!**
 
-	- Tous le projet est basculé en HTTPS donc les liens ne sont pas
-	- accessible depuis http:// , il le sont depuis https://
+	* Tous le projet est basculé en HTTPS donc les liens ne sont pas
+	* accessible depuis http:// , il le sont depuis https://
 	
-	- Ne pas oublier de générer de nouveaux certificats en executants les commandes suivantes :
+	* Ne pas oublier de générer de nouveaux certificats en executants les commandes suivantes :
 	
 		- openssl genrsa -out key.pem 1024
 		- openssl req -newkey rsa:1024 -new -key key.pem -out csr.pem
 		- openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 		
-	Les trois fichiers générer doivent être copié et placé dans les dossier suivants:
+	* Les trois fichiers générer doivent être copié et placé dans les dossier suivants:
 	
 		 - API_REST/ssl/
 		 - Front_end/ssl/
@@ -26,27 +26,27 @@
 	
 **3) Ensuite pour lancer le projet il faut suivre les étapes suivantes**
 
-	- Installer MariaDB Serveur :
+	* Installer MariaDB Serveur :
 		- sudo yum install -y mariadb-server
 		- sudo systemctl start mariadb
 		- mysql -h host -u user -p
 	
-	- Creer une base de donnée
+	* Creer une base de donnée
 		- CREATE DATABASE OSP;
 		- \q
 	
-	- Import the SQL file Database/init_database.sql in your database
+	* Import the SQL file Database/init_database.sql in your database
 		- Dans le dossier Database
 		- mysql -h host -u user -p
 		- source init_database.sql
 	
-	- Modify the database connection variables in the file API_REST/app.js
+	* Changer les variables de connexion à la BDD API_REST/app.js
 		- host
 		- user
 		- password
 		- database
 
-	- Get your ip with the command : ifconfig (linux) or ipconfig (windows)
+	* Prenez note de votre ip: ifconfig (linux) ou ipconfig (windows)
 
 	- Dans le dossier API_REST lancer la commande: node app.js [YOUR_IP]
 		- Le port utilisé par défaut par l'API est le 443(HTTPS)
