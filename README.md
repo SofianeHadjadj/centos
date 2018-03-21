@@ -55,7 +55,7 @@
 		- Front_end/src/app/user-card/user-card.component.ts
 		
 	- Dans le dossier Front_end lancer la commande
-		ng serve --ssl 1 --ssl-key "key.pem" --ssl-cert "cert.pem" --host [YOUR_IP] --port [YOUR_ANGULAR_PORT]
+		ng serve --ssl 1 --ssl-key "ssl/key.pem" --ssl-cert "ssl/cert.pem" --host [YOUR_IP] --port [YOUR_ANGULAR_PORT]
 		
 
 

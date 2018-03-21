@@ -19,7 +19,7 @@ var mysql = require('mysql');
 
 //Valeurs par défaut
 var my_ip = "127.0.0.1";
-var my_port = 443;
+var my_port = 4442;
 
 //Parseur d'arguments  -------->  syntaxe: node app.js [ip] [port]
 process.argv.forEach((val,index)=>{
@@ -123,4 +123,4 @@ app.get('/get_user_cards/:id',function(req,res){
 });
 
 // -------------------------------------------------
-serv.listen(443,my_ip); // Lancement du serveur
+serv.listen(my_port,my_ip); // Lancement du serveur

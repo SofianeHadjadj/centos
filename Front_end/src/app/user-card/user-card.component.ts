@@ -19,7 +19,7 @@ export class UserCardComponent implements OnInit {
 	
 	// Variables pour la connexion à l'API
 	api_ip : String = "192.168.33.20"
-	api_port : String = "443";
+	api_port : String = "4442";
 	
 	// Variables pour gérer les user-cards
 	card_list : Array<Card> = new Array; 
