@@ -49,7 +49,7 @@
 	* Prenez note de votre ip: ifconfig (linux) ou ipconfig (windows)
 
 	- Dans le dossier API_REST lancer la commande: node app.js [YOUR_IP]
-		- Le port utilisé par défaut par l'API est le 443(HTTPS)
+		- Le port utilisé par défaut par l'API est le 4442
 	
 	- Modify the ip/port with YOUR_IP in the file
 		- Front_end/src/app/user-card/user-card.component.ts
